@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <!-- BEGIN Formulario -->
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12" #empleadoForm="ngForm" (ngSubmit)="addEmpleado(empleadoForm)">
+                            <input type="hidden" name="_id" #_id="ngModel"
+                                [(ngModel)]="empleadoService.empleado._id">
+
+                            <div class="input-field col s12">
+                                <input type="text" name="nombre" #nombre="ngModel"
+                                    [(ngModel)]="empleadoService.empleado.nombre" placeholder="Nombre">
+                                <label for="nombre"></label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="puesto" #puesto="ngModel"
+                                    [(ngModel)]="empleadoService.empleado.puesto" placeholder="Puesto">
+                                <label for="puesto"></label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="departamento" #departamento="ngModel"
+                                    [(ngModel)]="empleadoService.empleado.departamento" placeholder="Departamento">
+                                <label for="departamento"></label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="number" name="salario" #salario="ngModel"
+                                    [(ngModel)]="empleadoService.empleado.salario" placeholder="Salario">
+                                <label for="salario"></label>
+                            </div>
+                            <div class="card-action">
+                                <div class="input-filed col s12">
+                                    <button class="btn" (click)="resetForm(empleadoForm)">Limpiar</button>
+                                    <button class="btn right">Guardar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Formulario-->
+        <!-- BEGIN Tabla -->
+        <div class="col s7">
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Puesto</th>
+                    <th>Departamento</th>
+                    <th>Salario</th>
+                    <th>Opciones</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empleado of empleadoService.empleados">
+                        <td>{{ empleado.nombre }}</td>
+                        <td>{{ empleado.puesto }}</td>
+                        <td>{{ empleado.departamento }}</td>
+                        <td>{{ empleado.salario }}</td>
+                        <td>
+                            <a (click)="editarEmpleado(empleado)"><i class="material-icons">edit</i></a>
+                            <a (click)="eliminarEmpleado(empleado._id)"><i class="material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- END Tabla -->
+    </div>
+</div>
